@@ -48,8 +48,8 @@ gzip -d doc/*.gz
 %build
 rm -f missing
 aclocal
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure
 %{__make} CFLAGS="%{rpmcflags}"
 
