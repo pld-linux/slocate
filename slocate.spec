@@ -31,9 +31,9 @@ danych (aktualizowan± co noc). Umo¿liwia tak¿e szybkie odszukanie
 pliku wed³ug podanego wzoru w postaci wyra¿enia regularnego.
 
 %description -l pt_BR
-O slocate localiza arquivos em um sistema via um banco de dados central
-(Atualizado toda madrugada). Isto permite a você localizar  rapidamente
-arquivos em qualquer parte do seu sistema.
+O slocate localiza arquivos em um sistema via um banco de dados
+central (Atualizado toda madrugada). Isto permite a você localizar
+rapidamente arquivos em qualquer parte do seu sistema.
 
 %description -l es
 Localiza archivos en un sistema por medio del banco central de datos.
