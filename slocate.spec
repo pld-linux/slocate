@@ -10,6 +10,7 @@ Release:	1
 License:	GPL
 Group:		Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz
+# Source0-md5: 4872830642ea2ed5f9aff932720583c9
 Source1:	%{name}.cron
 Source2:	%{name}-updatedb.conf
 Patch0:		%{name}-segfault.patch
