@@ -6,7 +6,7 @@ Summary(ru):	Поиск файлов в файловой системе при помощи центральной базы данных
 Summary(uk):	Пошук файл╕в в файлов╕й систем╕ за допомогою центрально╖ бази даних
 Name:		slocate
 Version:	2.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz
@@ -16,6 +16,7 @@ Source2:	%{name}-updatedb.conf
 Patch0:		%{name}-segfault.patch
 Patch1:		%{name}-manpage.patch
 Patch2:		%{name}-wht.patch
+Patch3:		%{name}-LOCATE_PATH.patch
 URL:		http://www.geekreview.org/slocate/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -62,6 +63,7 @@ gzip -d doc/*.gz
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 rm -f missing
@@ -69,7 +71,8 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 %configure
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
