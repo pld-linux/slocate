@@ -1,17 +1,17 @@
 Summary:	Finds files on a system via a central database.
 Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê danych
 Name:		slocate
-Version:	1.4
-Release:	5
+Version:	1.5
+Release:	1
 Copyright:	GPL
 Group:		Base
 Group(pl):	Bazowe
 Source0:	ftp://ftp.mkintraweb.com/pub/linux/slocate/%{name}-%{version}.tar.gz
 Source1:	locate.1
-Source2:	slocate.cron
+Source2:	updatedb.1
+Source3:	slocate.cron
 Prereq:		/usr/sbin/groupadd
 Buildroot:	/tmp/%{name}-%{version}-root
-Prereq:		shadow-utils
 
 %description
 Slocate searches through a central database (updated nightly) for files
@@ -36,8 +36,8 @@ install -d $RPM_BUILD_ROOT/{usr/{bin,man/man1},etc/cron.daily,var/lib/slocate}
 install -s slocate $RPM_BUILD_ROOT/usr/bin
 ln -sf slocate $RPM_BUILD_ROOT/usr/bin/locate
 
-install %{SOURCE1} $RPM_BUILD_ROOT/usr/man/man1
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/cron.daily
+install %{SOURCE1} %{SOURCE2} $RPM_BUILD_ROOT/usr/man/man1
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
 
 echo ".so locate.1" > $RPM_BUILD_ROOT/usr/man/man1/slocate.1
 
@@ -59,6 +59,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %attr(755,root,slocate) /var/lib/slocate
 
 %changelog
+* Thu May  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.5-1]
+- added updatedb(1) man page,
+- removed "Prereq: shadow-utils".
+
 * Tue Apr  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.4-5]
 - added slocate(1) man pages as *roff include to locate(1),
