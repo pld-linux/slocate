@@ -1,7 +1,7 @@
 Summary:	Finds files on a system via a central database.
 Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê danych
 Name:		slocate
-Version:	2.3
+Version:	2.5
 Release:	1
 License:	GPL
 Group:		Base
@@ -26,9 +26,10 @@ pliku wed³ug podanego zworu w postaci wyra¿enie regularnego.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 %build
+%configure
 %{__make} CFLAGS="$RPM_OPT_FLAGS"
 
 %install
@@ -39,12 +40,12 @@ install -s slocate $RPM_BUILD_ROOT%{_bindir}
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/locate
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/updatedb
 
-install slocate.1.linux $RPM_BUILD_ROOT%{_mandir}/man1/slocate.1
-install updatedb.1 $RPM_BUILD_ROOT%{_mandir}/man1/updatedb.1
+install doc/slocate.1.linux.gz $RPM_BUILD_ROOT%{_mandir}/man1/slocate.1.gz
+install doc/updatedb.1.gz $RPM_BUILD_ROOT%{_mandir}/man1/updatedb.1.gz
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.daily
 echo ".so slocate.1" > $RPM_BUILD_ROOT%{_mandir}/man1/locate.1
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
+#gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
 
 %pre
 %{_sbindir}/groupadd -g 21 -r -f slocate
