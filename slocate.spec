@@ -64,28 +64,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %dir %attr(755,root,slocate) /var/db/slocate
-
-%changelog
-* Mon Jun 21 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.6-1]
-- added removing group slocate on uninstalling package (added to Prereq
-  /usr/sbin/groupdel),
-- changed location slocate db directory to /var/db/slocate to be compliant
-  with FHS 2.0 (slocate-fhs.patch),
-- updatedb is now sym link to slocate,
-- all man pages ar in source tar ball.
-
-* Thu May  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.5-1]
-- added updatedb(1) man page,
-- removed "Prereq: shadow-utils".
-
-* Tue Apr  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.4-5]
-- added slocate(1) man pages as *roff include to locate(1),
-- added Prereq: %{_sbindir}/groupadd,
-- added pl translation,
-- added gzipping man pages.
-
-* Mon Feb 15 1999 Bill Nottingham <notting@redhat.com>
-- %post groupadd changed to %pre
