@@ -22,21 +22,21 @@ find files anywhere on your system.
 %description -l pl
 Slocate s³u¿y do szybkiego poszukiwania plików poprzez specjaln± bazê
 danych (aktualizowan± co noc). Umo¿liwia tak¿e szybkie odszukanie
-pliku wed³ug podanego zworu w postaci wyra¿enie regularnego.
+pliku wed³ug podanego wzoru w postaci wyra¿enia regularnego.
 
 %prep
 %setup -q
-#%patch0 -p1
+%patch0 -p1
 
 %build
 %configure
-%{__make} CFLAGS="$RPM_OPT_FLAGS"
+%{__make} CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{%{_bindir},%{_mandir}/man1,etc/cron.daily,var/lib/slocate}
 
-install -s slocate $RPM_BUILD_ROOT%{_bindir}
+install slocate $RPM_BUILD_ROOT%{_bindir}
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/locate
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/updatedb
 
@@ -44,8 +44,6 @@ install doc/slocate.1.linux.gz $RPM_BUILD_ROOT%{_mandir}/man1/slocate.1.gz
 install doc/updatedb.1.gz $RPM_BUILD_ROOT%{_mandir}/man1/updatedb.1.gz
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.daily
 echo ".so slocate.1" > $RPM_BUILD_ROOT%{_mandir}/man1/locate.1
-
-#gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
 
 %pre
 %{_sbindir}/groupadd -g 21 -r -f slocate
