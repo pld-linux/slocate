@@ -1,12 +1,12 @@
 Summary:	Finds files on a system via a central database.
 Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê danych
 Name:		slocate
-Version:	1.6
+Version:	2.1
 Release:	1
 Copyright:	GPL
 Group:		Base
 Group(pl):	Podstawowe
-Source0:	ftp://ftp.mkintraweb.com/pub/linux/slocate/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.mkintraweb.com/pub/linux/slocate/src/%{name}-%{version}.tar.gz
 Source1:	slocate.cron
 Patch:		slocate-fhs.patch
 Prereq:		/usr/sbin/groupadd
@@ -32,13 +32,14 @@ make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{%{_bindir},%{_mandir}/man1,etc/cron.daily,var/db/slocate}
+install -d $RPM_BUILD_ROOT/{%{_bindir},%{_mandir}/man1,etc/cron.daily,var/state/slocate}
 
 install -s slocate $RPM_BUILD_ROOT%{_bindir}
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/locate
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/updatedb
 
-install {slocate,updatedb}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+install slocate.1.linux $RPM_BUILD_ROOT%{_mandir}/man1/slocate.1
+install updatedb.1 $RPM_BUILD_ROOT%{_mandir}/man1/updatedb.1
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.daily
 echo ".so slocate.1" > $RPM_BUILD_ROOT%{_mandir}/man1/locate.1
 
@@ -63,4 +64,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0755,root,root) /etc/cron.daily/slocate.cron
 %{_mandir}/man1/*
 
-%dir %attr(755,root,slocate) /var/db/slocate
+%dir %attr(755,root,slocate) /var/state/slocate
