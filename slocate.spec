@@ -3,7 +3,7 @@ Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê 
 Name:		slocate
 Version:	2.2
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		Base
 Group(pl):	Podstawowe
 Source0:	ftp://ftp.mkintraweb.com/pub/linux/slocate/src/%{name}-%{version}.tar.gz
@@ -13,14 +13,14 @@ Prereq:		/usr/sbin/groupdel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Slocate searches through a central database (updated nightly) for files
-which match a given glob pattern. This allows you to quickly find files
-anywhere on your system.
+Slocate searches through a central database (updated nightly) for
+files which match a given glob pattern. This allows you to quickly
+find files anywhere on your system.
 
 %description -l pl
-Slocate s³u¿y do szybkiego poszukiwania plików poprzez specjaln± bazê danych
-(aktualizowan± co noc). Umo¿liwia tak¿e szybkie odszukanie pliku wed³ug
-podanego zworu w postaci wyra¿enie regularnego.
+Slocate s³u¿y do szybkiego poszukiwania plików poprzez specjaln± bazê
+danych (aktualizowan± co noc). Umo¿liwia tak¿e szybkie odszukanie
+pliku wed³ug podanego zworu w postaci wyra¿enie regularnego.
 
 %prep
 %setup -q
