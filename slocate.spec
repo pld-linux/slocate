@@ -8,6 +8,7 @@ Group:		Base
 Group(pl):	Podstawowe
 Source0:	ftp://ftp.mkintraweb.com/pub/linux/slocate/src/%{name}-%{version}.tar.gz
 Source1:	slocate.cron
+Patch0:		slocate-segv.patch
 Prereq:		/usr/sbin/groupadd
 Prereq:		/usr/sbin/groupdel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -24,6 +25,7 @@ pliku wed³ug podanego zworu w postaci wyra¿enie regularnego.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__make} CFLAGS="$RPM_OPT_FLAGS"
