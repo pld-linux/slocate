@@ -1,0 +1,48 @@
+--- slocate-2.6/doc/slocate.1.linux.org	Fri Jun  1 20:44:40 2001
++++ slocate-2.6/doc/slocate.1.linux	Fri Jun  1 22:30:51 2001
+@@ -2,17 +2,17 @@
+ .SH NAME
+ slocate \- Security Enhanced version of the GNU Locate
+ .SH SYNOPSIS
++.PP
+ slocate [\-qi] [\-d <path>] [\-\-database=<path>] <search string>
+-.br
++.PP
+ slocate [\-i] [\-r <regexp>] [\-\-regexp=<regexp>]
+-.br
++.PP
+ slocate [\-qv] [\-o <file>] [\-\-output=<file>]
++.PP
+ slocate [\-e <dir1,dir2,...>] [\-f <fstype1,...>] <[\-l <level>] [\-c] <[\-U <path>] [\-u]>
+-.br
++.PP
+ slocate [\-Vh] [\-\-version] [\-\-help]
+-.br
+-.br
+- 
++
+ .SH DESCRIPTION
+    Secure Locate provides a secure way to index and quickly search for 
+ files on your system. It uses incremental encoding just like GNU locate 
+@@ -64,11 +64,11 @@
+ .TP
+ .I \-o <file>
+ .I \-\-output=<file>
+-Specfies the database to create.
++Specifies the database to create.
+ .TP
+ .I \-d <path>
+ .I \-\-database=<path>
+-Specfies the path of databases to search in.
++Specifies the path of databases to search in.
+ .TP
+ .I \-h
+ .I \-\-help
+@@ -93,6 +93,7 @@
+ 
+ .SH FTP
+ ftp://ftp.geekreview.org/slocate/
++.br
+ ftp://ftp.mkintraweb.com/pub/linux/slocate/
+ 
+ .SH WEB
