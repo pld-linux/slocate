@@ -2,7 +2,7 @@ Summary:	Finds files on a system via a central database.
 Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê danych
 Name:		slocate
 Version:	2.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Base
 Group(de):	Gründsätzlich
@@ -45,6 +45,8 @@ install doc/updatedb.1.gz $RPM_BUILD_ROOT%{_mandir}/man1/updatedb.1.gz
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.daily
 echo ".so slocate.1" > $RPM_BUILD_ROOT%{_mandir}/man1/locate.1
 
+gzip -9nf AUTHORS ChangeLog README
+
 %pre
 %{_sbindir}/groupadd -g 21 -r -f slocate
 
@@ -63,5 +65,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0755,root,root) %{_bindir}/updatedb
 %attr(0755,root,root) /etc/cron.daily/slocate.cron
 %{_mandir}/man1/*
-
+%doc *.gz
 %dir %attr(755,root,slocate) /var/lib/slocate
