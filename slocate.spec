@@ -5,7 +5,7 @@ Version:	1.5
 Release:	1
 Copyright:	GPL
 Group:		Base
-Group(pl):	Bazowe
+Group(pl):	Podstawowe
 Source0:	ftp://ftp.mkintraweb.com/pub/linux/slocate/%{name}-%{version}.tar.gz
 Source1:	locate.1
 Source2:	updatedb.1
