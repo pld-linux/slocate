@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 if [ -n "`getgid slocate`" ]; then
 	if [ "`getgid slocate`" != "21" ]; then
 		echo "Error: group slocate doesn't have gid=21. Correct this before installing slocate." 1>&2
-	       exit 1
+		exit 1
 	fi
 else
 	echo "Adding group slocate GID=21."
