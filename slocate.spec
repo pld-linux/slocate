@@ -1,7 +1,9 @@
 Summary:	Finds files on a system via a central database
+Summary(es):	Localiza archivos en un sistema por medio del banco central de datos
 Summary(pl):	NarzЙdzie do odnajdywania plikСw w systemie poprzez specjaln╠ bazЙ danych
 Summary(pt_BR):	Localiza arquivos em um sistema via um banco de dados central
-Summary(es):	Localiza archivos en un sistema por medio del banco central de datos
+Summary(ru):	Поиск файлов в файловой системе при помощи центральной базы данных
+Summary(uk):	Пошук файл╕в в файлов╕й систем╕ за допомогою центрально╖ бази даних
 Name:		slocate
 Version:	2.7
 Release:	1
@@ -26,6 +28,9 @@ Slocate searches through a central database (updated nightly) for
 files which match a given glob pattern. This allows you to quickly
 find files anywhere on your system.
 
+%description -l es
+Localiza archivos en un sistema por medio del banco central de datos.
+
 %description -l pl
 Slocate sЁu©y do szybkiego poszukiwania plikСw poprzez specjaln╠ bazЙ
 danych (aktualizowan╠ co noc). Umo©liwia tak©e szybkie odszukanie
@@ -36,8 +41,19 @@ O slocate localiza arquivos em um sistema via um banco de dados
 central (Atualizado toda madrugada). Isto permite a vocЙ localizar
 rapidamente arquivos em qualquer parte do seu sistema.
 
-%description -l es
-Localiza archivos en un sistema por medio del banco central de datos.
+%description -l ru
+Slocate - это версия locate с улучшенной безопасностью (она не
+показывает имена файлов, которые вы не могли бы узнать просмотром
+файловой системы). как и locate, slocate производит поиск в
+центральной базе данных (которая обновляется, как правило, еженощно)
+файлов, отвечающих заданному шаблону.
+
+%description -l uk
+Slocate - це верс╕я locate з покращеною безпечн╕стю (вона не показу╓
+╕мена файл╕в, як╕ ви не змогли б д╕знатися переглядом файлово╖
+системи). Як ╕ locate, slocate проводить пошук в центральн╕й баз╕
+даних (яка оновля╓ться, як правило, щоноч╕) файл╕в, що в╕дпов╕дають
+заданому шаблону.
 
 %prep
 %setup -q
