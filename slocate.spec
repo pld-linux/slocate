@@ -4,7 +4,7 @@ Summary(pt_BR):	Localiza arquivos em um sistema via um banco de dados central
 Summary(es):	Localiza archivos en un sistema por medio del banco central de datos
 Name:		slocate
 Version:	2.6
-Release:	3
+Release:	4
 License:	GPL
 Group:		Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz
@@ -14,10 +14,11 @@ Patch0:		%{name}-segfault.patch
 Patch1:		%{name}-manpage.patch
 Patch2:		%{name}-wht.patch
 URL:		http://www.geekreview.org/slocate/
-Prereq:		/usr/sbin/groupadd
-Prereq:		/usr/sbin/groupdel
 BuildRequires:	autoconf
 BuildRequires:	automake
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/usr/sbin/groupadd
+Requires(postun):	/usr/sbin/groupdel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -72,13 +73,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`getgid slocate`" ]; then
-        if [ "`getgid slocate`" != "21" ]; then
-	       echo "Warning: group slocate haven't gid=21. Correct this before installing slocate" 1>&2
+	if [ "`getgid slocate`" != "21" ]; then
+		echo "Error: group slocate doesn't have gid=21. Correct this before installing slocate." 1>&2
 	       exit 1
 	fi
 else
-	echo "Making group slocate GID=21"
-	%{_sbindir}/groupadd -g 21 -r -f slocate
+	echo "Adding group slocate GID=21."
+	/usr/sbin/groupadd -g 21 -r -f slocate
 fi
 
 %post
@@ -87,9 +88,9 @@ if [ ! -f /var/lib/slocate/slocate.db ]; then
 fi
 
 %postun
-if [ $1 = 0 ]; then
-	echo "Removing group slocate GID=21"
-	%{_sbindir}/groupdel slocate
+if [ "$1" = "0" ]; then
+	echo "Removing group slocate."
+	/usr/sbin/groupdel slocate
 fi
 
 %files
