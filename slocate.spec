@@ -39,6 +39,8 @@ ln -sf slocate $RPM_BUILD_ROOT/usr/bin/locate
 install %{SOURCE1} $RPM_BUILD_ROOT/usr/man/man1
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/cron.daily
 
+echo ".so locate.1" > $RPM_BUILD_ROOT/usr/man/man1/slocate.1
+
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/*
 
 %clean
@@ -59,6 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Tue Apr  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.4-5]
+- added slocate(1) man pages as *roff include to locate(1),
 - added Prereq: /usr/sbin/groupadd,
 - added pl translation,
 - added gzipping man pages.
