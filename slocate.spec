@@ -1,4 +1,4 @@
-Summary:	Finds files on a system via a central database.
+Summary:	Finds files on a system via a central database
 Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê danych
 Summary(pt_BR):	Localiza arquivos em um sistema via um banco de dados central
 Summary(es):	Localiza archivos en un sistema por medio del banco central de datos
