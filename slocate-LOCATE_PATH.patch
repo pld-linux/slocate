@@ -1,0 +1,24 @@
+--- slocate-2.7/main.c.orig	Sat Jan 25 05:39:48 2003
++++ slocate-2.7/main.c	Mon Aug  4 15:31:34 2003
+@@ -85,6 +85,7 @@
+ #include <ctype.h>
+ #include <fnmatch.h>
+ #include <regex.h>
++#include <limits.h>
+ #include "config.h"
+ 
+ #ifdef HAVE_FTS_H
+@@ -347,9 +348,11 @@
+ 	if (!path || strlen(path) == 0) return;
+ 	
+ 	/* Check how many paths are currently in the string. */
+-	i = 1;
++	i = 2; /* first path plus terminating NULL */
+ 	part = path;
+-	while ((part = strchr(part+1, ':'))) i++;
++	while ((part = strchr(part+1, ':')))
++		if((++i) >= (INT_MAX / sizeof(char *)))
++			report_error(FATAL,QUIET,"%s: parse_decode_path: 'SLOCATE_PATH' is too long\n");
+ 	
+ 	/* Allocate enough space to fit existing paths plus new one */
+ 	SLOCATE_PATH = malloc(i * sizeof(char *));
