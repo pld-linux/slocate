@@ -33,8 +33,8 @@ make CFLAGS="$RPM_OPT_FLAGS"
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{usr/{bin,man/man1},etc/cron.daily,var/lib/slocate}
 
-install -s slocate $RPM_BUILD_ROOT/usr/bin
-ln -sf slocate $RPM_BUILD_ROOT/usr/bin/locate
+install -s slocate $RPM_BUILD_ROOT%{_bindir}
+ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/locate
 
 install %{SOURCE1} %{SOURCE2} $RPM_BUILD_ROOT%{_mandir}/man1
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
@@ -51,8 +51,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root, 755)
-%attr(2755,root,slocate) /usr/bin/slocate
-%attr(0755,root,slocate) /usr/bin/locate
+%attr(2755,root,slocate) %{_bindir}/slocate
+%attr(0755,root,slocate) %{_bindir}/locate
 %attr(0755,root,root) /etc/cron.daily/slocate.cron
 %{_mandir}/man1/*
 
