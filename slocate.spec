@@ -11,7 +11,7 @@ Source1:	slocate.cron
 Patch:		slocate-fhs.patch
 Prereq:		/usr/sbin/groupadd
 Prereq:		/usr/sbin/groupdel
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Slocate searches through a central database (updated nightly) for files
