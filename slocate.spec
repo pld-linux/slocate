@@ -10,7 +10,7 @@ Source0:	ftp://ftp.mkintraweb.com/pub/linux/slocate/%{name}-%{version}.tar.gz
 Source1:	locate.1
 Source2:	updatedb.1
 Source3:	slocate.cron
-Prereq:		/usr/sbin/groupadd
+Prereq:		%{_sbindir}/groupadd
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -47,7 +47,7 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
 rm -rf $RPM_BUILD_ROOT
 
 %pre
-/usr/sbin/groupadd -g 21 -r -f slocate
+%{_sbindir}/groupadd -g 21 -r -f slocate
 
 %files
 %defattr(644,root,root, 755)
@@ -67,7 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 * Tue Apr  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.4-5]
 - added slocate(1) man pages as *roff include to locate(1),
-- added Prereq: /usr/sbin/groupadd,
+- added Prereq: %{_sbindir}/groupadd,
 - added pl translation,
 - added gzipping man pages.
 
