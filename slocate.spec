@@ -93,7 +93,9 @@ fi
 if [ ! -f /var/lib/slocate/slocate.db ]; then
 	NETMOUNTS=`mount -t nfs,smbfs,ncpfs | cut -d ' ' -f 3`
 	NETPATHS=`echo $NETMOUNTS | sed -e 's| |,|g'`
+	echo "Making database:"
 	/usr/bin/slocate -u -e "$NETPATHS,/tmp,/var/tmp,/usr/tmp,/afs,/net,/proc"
+	echo "done"
 fi
 %clean
 rm -rf $RPM_BUILD_ROOT
