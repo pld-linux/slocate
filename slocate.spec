@@ -1,14 +1,15 @@
 Summary:	Finds files on a system via a central database.
 Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê danych
 Name:		slocate
-Version:	2.2
-Release:	2
+Version:	2.3
+Release:	1
 License:	GPL
 Group:		Base
+Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 Source0:	ftp://ftp.mkintraweb.com/pub/linux/slocate/src/%{name}-%{version}.tar.gz
-Source1:	slocate.cron
-Patch0:		slocate-segv.patch
+Source1:	%{name}.cron
+Patch0:		%{name}-segv.patch
 Prereq:		/usr/sbin/groupadd
 Prereq:		/usr/sbin/groupdel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
