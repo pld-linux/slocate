@@ -3,8 +3,8 @@ Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê 
 Summary(pt_BR):	Localiza arquivos em um sistema via um banco de dados central
 Summary(es):	Localiza archivos en un sistema por medio del banco central de datos
 Name:		slocate
-Version:	2.5
-Release:	3
+Version:	2.6
+Release:	2
 License:	GPL
 Group:		Base
 Group(de):	Gründsätzlich
@@ -12,11 +12,15 @@ Group(pl):	Podstawowe
 Group(pt_BR):	Base
 Group(es):	Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz
-URL:		http://www.geekreview.org/slocate
 Source1:	%{name}.cron
-Patch0:		%{name}-segv.patch
+Patch0:		%{name}-segfault.patch
+Patch1:		%{name}-manpage.patch
+Patch2:		%{name}-wht.patch
+URL:		http://www.geekreview.org/slocate/
 Prereq:		/usr/sbin/groupadd
 Prereq:		/usr/sbin/groupdel
+BuildRequires:	autoconf
+BuildRequires:	automake
 Requires(post):	sed
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -36,11 +40,14 @@ O slocate localiza arquivos em um sistema via um banco de dados central
 arquivos em qualquer parte do seu sistema.
 
 %description -l es
-Localiza archivos en un sistema por medio del banco central de datos
+Localiza archivos en un sistema por medio del banco central de datos.
 
 %prep
 %setup -q
+gzip -d doc/*.gz
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
@@ -58,8 +65,8 @@ install slocate $RPM_BUILD_ROOT%{_bindir}
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/locate
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/updatedb
 
-install doc/slocate.1.linux.gz $RPM_BUILD_ROOT%{_mandir}/man1/slocate.1.gz
-install doc/updatedb.1.gz $RPM_BUILD_ROOT%{_mandir}/man1/updatedb.1.gz
+install doc/slocate.1.linux $RPM_BUILD_ROOT%{_mandir}/man1/slocate.1
+install doc/slocate.1.other $RPM_BUILD_ROOT%{_mandir}/man1/updatedb.1
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.daily
 echo ".so slocate.1" > $RPM_BUILD_ROOT%{_mandir}/man1/locate.1
 
