@@ -4,7 +4,7 @@ Summary(pt_BR):	Localiza arquivos em um sistema via um banco de dados central
 Summary(es):	Localiza archivos en un sistema por medio del banco central de datos
 Name:		slocate
 Version:	2.6
-Release:	2
+Release:	3
 License:	GPL
 Group:		Base
 Group(de):	Gründsätzlich
@@ -13,6 +13,7 @@ Group(pt_BR):	Base
 Group(es):	Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz
 Source1:	%{name}.cron
+Source2:	%{name}-updatedb.conf
 Patch0:		%{name}-segfault.patch
 Patch1:		%{name}-manpage.patch
 Patch2:		%{name}-wht.patch
@@ -21,7 +22,6 @@ Prereq:		/usr/sbin/groupadd
 Prereq:		/usr/sbin/groupdel
 BuildRequires:	autoconf
 BuildRequires:	automake
-Requires(post):	sed
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -59,18 +59,22 @@ automake -a -c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{%{_bindir},%{_mandir}/man1,etc/cron.daily,var/lib/slocate}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,/etc/cron.daily,/var/lib/slocate}
 
 install slocate $RPM_BUILD_ROOT%{_bindir}
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/locate
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/updatedb
 
 install doc/slocate.1.linux $RPM_BUILD_ROOT%{_mandir}/man1/slocate.1
-install doc/slocate.1.other $RPM_BUILD_ROOT%{_mandir}/man1/updatedb.1
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.daily
+install doc/updatedb.1 $RPM_BUILD_ROOT%{_mandir}/man1/updatedb.1
 echo ".so slocate.1" > $RPM_BUILD_ROOT%{_mandir}/man1/locate.1
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.daily/slocate
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/updatedb.conf
 
 gzip -9nf AUTHORS ChangeLog README
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`getgid slocate`" ]; then
@@ -83,29 +87,24 @@ else
 	%{_sbindir}/groupadd -g 21 -r -f slocate
 fi
 
-%preun
+%post
+if [ ! -f /var/lib/slocate/slocate.db ]; then
+	echo 'Run "%{_bindir}/updatedb" if you want to make slocate database immediately.'
+fi
+
+%postun
 if [ $1 = 0 ]; then
 	echo "Removing group slocate GID=21"
 	%{_sbindir}/groupdel slocate
 fi
-
-%post
-if [ ! -f /var/lib/slocate/slocate.db ]; then
-	NETMOUNTS=`mount -t nfs,smbfs,ncpfs | cut -d ' ' -f 3`
-	NETPATHS=`echo $NETMOUNTS | sed -e 's| |,|g'`
-	echo "Making database:"
-	/usr/bin/slocate -u -e "$NETPATHS,/tmp,/var/tmp,/usr/tmp,/afs,/net,/proc"
-	echo "done"
-fi
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %attr(2755,root,slocate) %{_bindir}/slocate
 %attr(0755,root,root) %{_bindir}/locate
 %attr(0755,root,root) %{_bindir}/updatedb
-%attr(0755,root,root) /etc/cron.daily/slocate.cron
+%attr(0750,root,root) /etc/cron.daily/slocate
+%attr(0640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/updatedb.conf
 %{_mandir}/man1/*
 %doc *.gz
 %dir %attr(755,root,slocate) /var/lib/slocate
