@@ -36,12 +36,12 @@ install -d $RPM_BUILD_ROOT/{usr/{bin,man/man1},etc/cron.daily,var/lib/slocate}
 install -s slocate $RPM_BUILD_ROOT/usr/bin
 ln -sf slocate $RPM_BUILD_ROOT/usr/bin/locate
 
-install %{SOURCE1} %{SOURCE2} $RPM_BUILD_ROOT/usr/man/man1
+install %{SOURCE1} %{SOURCE2} $RPM_BUILD_ROOT%{_mandir}/man1
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
 
-echo ".so locate.1" > $RPM_BUILD_ROOT/usr/man/man1/slocate.1
+echo ".so locate.1" > $RPM_BUILD_ROOT%{_mandir}/man1/slocate.1
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/*
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -54,7 +54,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2755,root,slocate) /usr/bin/slocate
 %attr(0755,root,slocate) /usr/bin/locate
 %attr(0755,root,root) /etc/cron.daily/slocate.cron
-/usr/man/man1/*
+%{_mandir}/man1/*
 
 %dir %attr(755,root,slocate) /var/lib/slocate
 
