@@ -3,8 +3,8 @@ Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê 
 Summary(pt_BR):	Localiza arquivos em um sistema via um banco de dados central
 Summary(es):	Localiza archivos en un sistema por medio del banco central de datos
 Name:		slocate
-Version:	2.6
-Release:	4
+Version:	2.7
+Release:	1
 License:	GPL
 Group:		Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz

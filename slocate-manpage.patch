@@ -38,11 +38,3 @@
  .TP
  .I \-h
  .I \-\-help
-@@ -93,6 +93,7 @@
- 
- .SH FTP
- ftp://ftp.geekreview.org/slocate/
-+.br
- ftp://ftp.mkintraweb.com/pub/linux/slocate/
- 
- .SH WEB
