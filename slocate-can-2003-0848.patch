@@ -1,0 +1,92 @@
+CAN-2003-0848: 'slocate' sgid privileges are now dropped when
+searching databases that are not part of the 'slocate' group. This
+will prevent malicious user supplied databases from giving access to
+the 'slocate' group.  Patch from Kevin Lindsay <klindsay@debian.org>  
+
+--- slocate-2.6.orig/main.c
++++ slocate-2.6/main.c
+@@ -339,6 +339,9 @@
+ 	char *part;
+ 	int i;
+ 	int res_errno;
++	char *tmp_ptr = NULL;
++	int last_sgid = 0;
++	struct stat db_stat;
+ 
+ 	/* Make sure path is not empty */
+ 	if (!path || strlen(path) == 0) return;
+@@ -382,6 +385,28 @@
+ 
+ 	/* Null terminate array */
+ 	SLOCATE_PATH[i] = NULL;
++	
++	/* Sort sgid slocate db's to the top */
++	for (i = 0; SLOCATE_PATH[i]; i++) {
++		if (stat(SLOCATE_PATH[i], &db_stat) == -1)
++		    report_error(FATAL, QUIET, "%s: Could not stat DB: %s: %s\n", progname, SLOCATE_PATH[i], strerror(errno));
++
++		if (db_stat.st_gid != SLOC_GID)
++		    continue;
++		
++		if (i != last_sgid) {
++			tmp_ptr = SLOCATE_PATH[last_sgid];
++			SLOCATE_PATH[last_sgid] = SLOCATE_PATH[i];
++			SLOCATE_PATH[i] = tmp_ptr;
++		}
++		
++		last_sgid += 1;
++		
++	}
++	
++	/* for (i = 0; SLOCATE_PATH[i]; i++)
++	    printf("%s\n", SLOCATE_PATH[i]); */
++
+ }
+ 
+ /* Parse Dash */
+@@ -1152,6 +1177,22 @@
+ 	char *cp=NULL;
+ #endif
+ 	char *bucket_of_holding=NULL;
++	gid_t cur_gid;
++	struct stat db_stat;
++
++	cur_gid = getegid();
++
++	if (stat(database, &db_stat) == -1)
++	    report_error(FATAL, QUIET, "%s: Could not stat '%d': %s\n", progname, strerror(errno));
++	
++	/* If the database's file group is not apart of the 'slocate' group,
++	 * drop privileges. When multiple databases are specified, the ones
++	 * apart of the 'slocate' group will be searched first before the
++	 * privileges are dropped. */       
++	if (cur_gid == SLOC_GID && db_stat.st_gid != SLOC_GID) {
++		if (setgid(GID) == -1)
++		    report_error(FATAL, QUIET, "%s: Could not drop privileges.", progname);
++	}
+ 
+ 	if ((fd = open(database,O_RDONLY)) == -1) {
+ 		report_error(WARNING,QUIET,"%s: decode_db(): %s: %s\n",progname,database,strerror(errno));
+@@ -1395,6 +1450,9 @@
+ 	/* Get user IDs */
+ 	UID = getuid();        
+ 	GID = getgid();
++			
++	/* Get the 'slocate' group GID */
++	SLOC_GID = get_gid(GRPFILE);
+ 
+ 	/* Add the LOCATE_PATH environment variable to the list of databases to search in */
+ 	parse_decode_path(getenv("LOCATE_PATH"));
+@@ -1519,11 +1577,7 @@
+ 	 * with the -d option, etc */
+ 
+ 	if (ADD_SLOCATEDB)
+-	    parse_decode_path(SLOCATEDB);
+-
+-	/* Get the 'slocate' group GID */
+-	SLOC_GID = get_gid(GRPFILE);
+-	
++	    parse_decode_path(SLOCATEDB);	
+ 	
+ 	/* if the -U option has been used, start to create the database at specified path */
+ 	if (SPECDIR)
