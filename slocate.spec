@@ -50,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/groupadd -g 21 -r -f slocate
 
 %files
-%defattr(644,root,root, 755)
+%defattr(644,root,root,755)
 %attr(2755,root,slocate) %{_bindir}/slocate
 %attr(0755,root,slocate) %{_bindir}/locate
 %attr(0755,root,root) /etc/cron.daily/slocate.cron
