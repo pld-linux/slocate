@@ -67,8 +67,6 @@ echo ".so slocate.1" > $RPM_BUILD_ROOT%{_mandir}/man1/locate.1
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.daily/slocate
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/updatedb.conf
 
-gzip -9nf AUTHORS ChangeLog README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -96,11 +94,11 @@ fi
 
 %files
 %defattr(644,root,root,755)
+%doc AUTHORS ChangeLog README
 %attr(2755,root,slocate) %{_bindir}/slocate
 %attr(0755,root,root) %{_bindir}/locate
 %attr(0755,root,root) %{_bindir}/updatedb
 %attr(0750,root,root) /etc/cron.daily/slocate
 %attr(0640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/updatedb.conf
+%dir %attr(750,root,slocate) /var/lib/slocate
 %{_mandir}/man1/*
-%doc *.gz
-%dir %attr(755,root,slocate) /var/lib/slocate
