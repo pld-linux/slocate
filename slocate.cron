@@ -1,0 +1,10 @@
+#!/bin/sh
+
+NETMOUNTS=`mount -t nfs,smbfs,ncpfs | cut -d ' ' -f 3`
+NETPATHS=`echo $NETMOUNTS | sed -e 's| |,|g'`
+
+if [ -n "$NETPATHS" ]; then
+  /usr/bin/slocate -u -e "$NETPATHS,/tmp,/var/tmp,/usr/tmp,/afs,/net,/proc"
+else
+  /usr/bin/slocate -u -e "/tmp,/var/tmp,/usr/tmp,/afs,/net,/proc"
+fi
