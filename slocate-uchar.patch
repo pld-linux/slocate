@@ -1,0 +1,16 @@
+--- slocate-2.7/main.c.orig	Fri Feb 20 15:19:54 2004
++++ slocate-2.7/main.c	Fri Feb 20 16:05:45 2004
+@@ -1244,10 +1244,11 @@
+ 		code_num = (short)*begin_ptr;
+ 		begin_ptr += 1;
+ 
++		if (code_num > 127)
++		    code_num -= 256;
+ 		if (code_num == SLOC_ESC) {
+ 			code_num = get_short(&begin_ptr);
+-		} else if (code_num > 127)
+-		    code_num = code_num - 256;
++		}
+ 
+ 		/* FIXME sometimes pathlen is < 0 but it shouldn't be.
+ 		 * corrupt database file? 
