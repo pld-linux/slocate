@@ -2,13 +2,12 @@ Summary:	Finds files on a system via a central database.
 Summary(pl):	Narzêdzie do odnajdywania plików w systemie poprzez specjaln± bazê danych
 Name:		slocate
 Version:	2.1
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Base
 Group(pl):	Podstawowe
 Source0:	ftp://ftp.mkintraweb.com/pub/linux/slocate/src/%{name}-%{version}.tar.gz
 Source1:	slocate.cron
-Patch:		slocate-fhs.patch
 Prereq:		/usr/sbin/groupadd
 Prereq:		/usr/sbin/groupdel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -25,14 +24,13 @@ podanego zworu w postaci wyra¿enie regularnego.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{%{_bindir},%{_mandir}/man1,etc/cron.daily,var/state/slocate}
+install -d $RPM_BUILD_ROOT/{%{_bindir},%{_mandir}/man1,etc/cron.daily,var/lib/slocate}
 
 install -s slocate $RPM_BUILD_ROOT%{_bindir}
 ln -sf slocate $RPM_BUILD_ROOT%{_bindir}/locate
@@ -64,4 +62,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0755,root,root) /etc/cron.daily/slocate.cron
 %{_mandir}/man1/*
 
-%dir %attr(755,root,slocate) /var/state/slocate
+%dir %attr(755,root,slocate) /var/lib/slocate
