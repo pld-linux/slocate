@@ -20,6 +20,7 @@ Patch3:		%{name}-LOCATE_PATH.patch
 URL:		http://www.geekreview.org/slocate/
 BuildRequires:	autoconf
 BuildRequires:	automake
+Requires:	crondaemon
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(postun):	/usr/sbin/groupdel
