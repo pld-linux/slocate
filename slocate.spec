@@ -48,12 +48,10 @@ echo ".so slocate.1" > $RPM_BUILD_ROOT%{_mandir}/man1/locate.1
 gzip -9nf AUTHORS ChangeLog README
 
 %pre
-%{_sbindir}/groupadd -g 21 -r -f slocate
+GID=21; %groupadd
 
 %preun
-if [ $1 = 0 ]; then
-	groupdel slocate
-fi
+%groupdel
 
 %clean
 rm -rf $RPM_BUILD_ROOT
