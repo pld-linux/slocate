@@ -7,10 +7,6 @@ Version:	2.6
 Release:	3
 License:	GPL
 Group:		Base
-Group(de):	Gründsätzlich
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
-Group(es):	Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz
 Source1:	%{name}.cron
 Source2:	%{name}-updatedb.conf
