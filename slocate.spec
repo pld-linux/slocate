@@ -22,7 +22,7 @@ Patch5:		%{name}-can-2003-0848.patch
 URL:		http://www.geekreview.org/slocate/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	rpmbuild(macros) >= 1.159
+BuildRequires:	rpmbuild(macros) >= 1.202
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(postun):	/usr/sbin/groupdel
@@ -98,15 +98,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/updatedb.conf
 rm -rf $RPM_BUILD_ROOT
 
 %pre
-if [ -n "`/usr/bin/getgid slocate`" ]; then
-	if [ "`/usr/bin/getgid slocate`" != "21" ]; then
-		echo "Error: group slocate doesn't have gid=21. Correct this before installing slocate." 1>&2
-		exit 1
-	fi
-else
-	echo "Adding group slocate GID=21."
-	/usr/sbin/groupadd -g 21 slocate 1>&2
-fi
+%groupadd -g 21 slocate
 
 %post
 if [ ! -f /var/lib/slocate/slocate.db ]; then
