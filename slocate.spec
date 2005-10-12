@@ -6,7 +6,7 @@ Summary(ru):	Поиск файлов в файловой системе при помощи центральной базы данных
 Summary(uk):	Пошук файл╕в в файлов╕й систем╕ за допомогою центрально╖ бази даних
 Name:		slocate
 Version:	2.7
-Release:	6
+Release:	7
 License:	GPL
 Group:		Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz
