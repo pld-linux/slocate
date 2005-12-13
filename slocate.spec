@@ -23,9 +23,9 @@ URL:		http://www.geekreview.org/slocate/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	rpmbuild(macros) >= 1.202
+Requires(postun):	/usr/sbin/groupdel
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
-Requires(postun):	/usr/sbin/groupdel
 Requires:	crondaemon
 Provides:	group(slocate)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -114,9 +114,9 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(2755,root,slocate) %{_bindir}/slocate
-%attr(0755,root,root) %{_bindir}/locate
-%attr(0755,root,root) %{_bindir}/updatedb
-%attr(0750,root,root) /etc/cron.daily/slocate
-%attr(0640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/updatedb.conf
+%attr(755,root,root) %{_bindir}/locate
+%attr(755,root,root) %{_bindir}/updatedb
+%attr(750,root,root) /etc/cron.daily/slocate
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/updatedb.conf
 %dir %attr(750,root,slocate) /var/lib/slocate
 %{_mandir}/man1/*
