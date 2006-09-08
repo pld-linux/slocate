@@ -1,0 +1,2 @@
+- use %{debug} macro
+- segv patch: regexp search now works
