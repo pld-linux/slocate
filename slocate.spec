@@ -1,9 +1,9 @@
 Summary:	Finds files on a system via a central database
-Summary(es.UTF-8):   Localiza archivos en un sistema por medio del banco central de datos
-Summary(pl.UTF-8):   Narzędzie do odnajdywania plików w systemie poprzez specjalną bazę danych
-Summary(pt_BR.UTF-8):   Localiza arquivos em um sistema via um banco de dados central
-Summary(ru.UTF-8):   Поиск файлов в файловой системе при помощи центральной базы данных
-Summary(uk.UTF-8):   Пошук файлів в файловій системі за допомогою центральної бази даних
+Summary(es.UTF-8):	Localiza archivos en un sistema por medio del banco central de datos
+Summary(pl.UTF-8):	Narzędzie do odnajdywania plików w systemie poprzez specjalną bazę danych
+Summary(pt_BR.UTF-8):	Localiza arquivos em um sistema via um banco de dados central
+Summary(ru.UTF-8):	Поиск файлов в файловой системе при помощи центральной базы данных
+Summary(uk.UTF-8):	Пошук файлів в файловій системі за допомогою центральної бази даних
 Name:		slocate
 Version:	2.7
 Release:	9
