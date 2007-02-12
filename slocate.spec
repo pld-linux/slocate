@@ -1,9 +1,9 @@
 Summary:	Finds files on a system via a central database
-Summary(es):	Localiza archivos en un sistema por medio del banco central de datos
-Summary(pl):	NarzЙdzie do odnajdywania plikСw w systemie poprzez specjaln╠ bazЙ danych
-Summary(pt_BR):	Localiza arquivos em um sistema via um banco de dados central
-Summary(ru):	Поиск файлов в файловой системе при помощи центральной базы данных
-Summary(uk):	Пошук файл╕в в файлов╕й систем╕ за допомогою центрально╖ бази даних
+Summary(es.UTF-8):   Localiza archivos en un sistema por medio del banco central de datos
+Summary(pl.UTF-8):   Narzд≥dzie do odnajdywania plikцЁw w systemie poprzez specjalnд┘ bazд≥ danych
+Summary(pt_BR.UTF-8):   Localiza arquivos em um sistema via um banco de dados central
+Summary(ru.UTF-8):   п÷п╬п╦я│п╨ я└п╟п╧п╩п╬п╡ п╡ я└п╟п╧п╩п╬п╡п╬п╧ я│п╦я│я┌п╣п╪п╣ п©я─п╦ п©п╬п╪п╬я┴п╦ я├п╣п╫я┌я─п╟п╩я▄п╫п╬п╧ п╠п╟п╥я▀ п╢п╟п╫п╫я▀я┘
+Summary(uk.UTF-8):   п÷п╬я┬я┐п╨ я└п╟п╧п╩я√п╡ п╡ я└п╟п╧п╩п╬п╡я√п╧ я│п╦я│я┌п╣п╪я√ п╥п╟ п╢п╬п©п╬п╪п╬пЁп╬я▌ я├п╣п╫я┌я─п╟п╩я▄п╫п╬я≈ п╠п╟п╥п╦ п╢п╟п╫п╦я┘
 Name:		slocate
 Version:	2.7
 Release:	9
@@ -35,32 +35,32 @@ Slocate searches through a central database (updated nightly) for
 files which match a given glob pattern. This allows you to quickly
 find files anywhere on your system.
 
-%description -l es
+%description -l es.UTF-8
 Localiza archivos en un sistema por medio del banco central de datos.
 
-%description -l pl
-Slocate sЁu©y do szybkiego poszukiwania plikСw poprzez specjaln╠ bazЙ
-danych (aktualizowan╠ co noc). Umo©liwia tak©e szybkie odszukanie
-pliku wedЁug podanego wzoru w postaci wyra©enia regularnego.
+%description -l pl.UTF-8
+Slocate sе┌uе╪y do szybkiego poszukiwania plikцЁw poprzez specjalnд┘ bazд≥
+danych (aktualizowanд┘ co noc). Umoе╪liwia takе╪e szybkie odszukanie
+pliku wedе┌ug podanego wzoru w postaci wyraе╪enia regularnego.
 
-%description -l pt_BR
+%description -l pt_BR.UTF-8
 O slocate localiza arquivos em um sistema via um banco de dados
-central (Atualizado toda madrugada). Isto permite a vocЙ localizar
+central (Atualizado toda madrugada). Isto permite a vocц╙ localizar
 rapidamente arquivos em qualquer parte do seu sistema.
 
-%description -l ru
-Slocate - это версия locate с улучшенной безопасностью (она не
-показывает имена файлов, которые вы не могли бы узнать просмотром
-файловой системы). как и locate, slocate производит поиск в
-центральной базе данных (которая обновляется, как правило, еженощно)
-файлов, отвечающих заданному шаблону.
+%description -l ru.UTF-8
+Slocate - я█я┌п╬ п╡п╣я─я│п╦я▐ locate я│ я┐п╩я┐я┤я┬п╣п╫п╫п╬п╧ п╠п╣п╥п╬п©п╟я│п╫п╬я│я┌я▄я▌ (п╬п╫п╟ п╫п╣
+п©п╬п╨п╟п╥я▀п╡п╟п╣я┌ п╦п╪п╣п╫п╟ я└п╟п╧п╩п╬п╡, п╨п╬я┌п╬я─я▀п╣ п╡я▀ п╫п╣ п╪п╬пЁп╩п╦ п╠я▀ я┐п╥п╫п╟я┌я▄ п©я─п╬я│п╪п╬я┌я─п╬п╪
+я└п╟п╧п╩п╬п╡п╬п╧ я│п╦я│я┌п╣п╪я▀). п╨п╟п╨ п╦ locate, slocate п©я─п╬п╦п╥п╡п╬п╢п╦я┌ п©п╬п╦я│п╨ п╡
+я├п╣п╫я┌я─п╟п╩я▄п╫п╬п╧ п╠п╟п╥п╣ п╢п╟п╫п╫я▀я┘ (п╨п╬я┌п╬я─п╟я▐ п╬п╠п╫п╬п╡п╩я▐п╣я┌я│я▐, п╨п╟п╨ п©я─п╟п╡п╦п╩п╬, п╣п╤п╣п╫п╬я┴п╫п╬)
+я└п╟п╧п╩п╬п╡, п╬я┌п╡п╣я┤п╟я▌я┴п╦я┘ п╥п╟п╢п╟п╫п╫п╬п╪я┐ я┬п╟п╠п╩п╬п╫я┐.
 
-%description -l uk
-Slocate - це верс╕я locate з покращеною безпечн╕стю (вона не показу╓
-╕мена файл╕в, як╕ ви не змогли б д╕знатися переглядом файлово╖
-системи). Як ╕ locate, slocate проводить пошук в центральн╕й баз╕
-даних (яка оновля╓ться, як правило, щоноч╕) файл╕в, що в╕дпов╕дають
-заданому шаблону.
+%description -l uk.UTF-8
+Slocate - я├п╣ п╡п╣я─я│я√я▐ locate п╥ п©п╬п╨я─п╟я┴п╣п╫п╬я▌ п╠п╣п╥п©п╣я┤п╫я√я│я┌я▌ (п╡п╬п╫п╟ п╫п╣ п©п╬п╨п╟п╥я┐я■
+я√п╪п╣п╫п╟ я└п╟п╧п╩я√п╡, я▐п╨я√ п╡п╦ п╫п╣ п╥п╪п╬пЁп╩п╦ п╠ п╢я√п╥п╫п╟я┌п╦я│я▐ п©п╣я─п╣пЁп╩я▐п╢п╬п╪ я└п╟п╧п╩п╬п╡п╬я≈
+я│п╦я│я┌п╣п╪п╦). п╞п╨ я√ locate, slocate п©я─п╬п╡п╬п╢п╦я┌я▄ п©п╬я┬я┐п╨ п╡ я├п╣п╫я┌я─п╟п╩я▄п╫я√п╧ п╠п╟п╥я√
+п╢п╟п╫п╦я┘ (я▐п╨п╟ п╬п╫п╬п╡п╩я▐я■я┌я▄я│я▐, я▐п╨ п©я─п╟п╡п╦п╩п╬, я┴п╬п╫п╬я┤я√) я└п╟п╧п╩я√п╡, я┴п╬ п╡я√п╢п©п╬п╡я√п╢п╟я▌я┌я▄
+п╥п╟п╢п╟п╫п╬п╪я┐ я┬п╟п╠п╩п╬п╫я┐.
 
 %prep
 %setup -q
