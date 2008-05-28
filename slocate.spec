@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Поиск файлов в файловой системе п
 Summary(uk.UTF-8):	Пошук файлів в файловій системі за допомогою центральної бази даних
 Name:		slocate
 Version:	2.7
-Release:	10
+Release:	11
 License:	GPL
 Group:		Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz
