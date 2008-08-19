@@ -7,7 +7,7 @@ Summary(uk.UTF-8):	Пошук файлів в файловій системі з
 Name:		slocate
 Version:	2.7
 Release:	11
-License:	GPL
+License:	GPL v2+
 Group:		Base
 Source0:	ftp://ftp.geekreview.org/slocate/src/%{name}-%{version}.tar.gz
 # Source0-md5:	4872830642ea2ed5f9aff932720583c9
@@ -28,6 +28,8 @@ Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires:	crondaemon
 Provides:	group(slocate)
+Provides:	locate-utility
+Obsoletes:	locate-utility
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
